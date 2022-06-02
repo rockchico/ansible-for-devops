@@ -1,0 +1,66 @@
+    1  sudo vim /etc/environment
+    2  vim /etc/environment
+    3  sudo vim /etc/environment
+    4  sudo vim /etc/apt/apt.conf
+    5  sudo vim /etc/profile
+    6  echo "export http_proxy ftp_proxy" >> /etc/profile
+    7  sudo echo "export http_proxy ftp_proxy" >> /etc/profile
+    8  sudo vim /etc/profile
+    9  sudo apt-get update
+   10  sudo apt install ansible
+   11  vim /etc/ansible/hosts
+   12  sudo vim /etc/ansible/hosts
+   13  clear
+   14  ansible multi -a "hostname"
+   15  ssh-keygen -t rsa -b 4096
+   16  ssh-copy-id vagrant@192.168.60.4
+   17  ssh-copy-id vagrant@192.168.60.5
+   18  ssh-copy-id vagrant@192.168.60.6
+   19  ansible multi -a "hostname"
+   20  sudo vim /etc/ansible/ansible.cfg
+   21  ansible multi -a "hostname"
+   22  ansible multi -a "free -m"
+   23  ansible multi -a "free -m" -f 1
+   24  ansible -a "free -m" -f 1 multi
+   25  ansible -a "df -h" -f 1 multi
+   26  ansible -a "date" -f 1 multi
+   27  ansible -m setup multi
+   28  clear
+   29  ansible -s -m yum - "name=ntp state=present" multi
+   30  ansible -s -m yum -a "name=ntp state=present" multi
+   31  ansible -m yum -a "name=ntp state=present" multi
+   32  ansible --help
+   33  ansible -b -m yum -a "name=ntp state=present" multi
+   34  claar
+   35  clear
+   36  ssh vagrant@192.168.60.4
+   37  ansible -b -a "echo 'proxy=http://172.28.8.54:3128' >> /etc/yum.conf" multi
+   38  ssh vagrant@192.168.60.4
+   39  ssh vagrant@192.168.60.5
+   40  ansible -b -a "echo proxy=http://172.28.8.54:3128 >> /etc/yum.conf" multi
+   41  ssh vagrant@192.168.60.5
+   42  ansible -b -m shell -a "echo 'proxy=http://172.28.8.54:3128' >> /etc/yum.conf" multi
+   43  ansible -b -m shell -a "cat /etc/yum.conf' >> /etc/yum.conf" multi
+   44  ansible -b -m shell -a "cat /etc/yum.conf" multi
+   45  ssh vagrant@192.168.60.5
+   46  ansible -b -m shell -a "cat /etc/environment" multi
+   47  ssh vagrant@192.168.60.4
+   48  ansible -b -m shell -a "cat /etc/environment" multi
+   49  ansible -b -m shell -a "echo 'http_proxy=http://172.28.8.54:3128\nhttps_proxy=http://172.28.8.54:3128' >> /etc/environment" multi
+   50  ansible -b -m shell -a "cat /etc/environment" multi
+   51  ssh vagrant@192.168.60.4
+   52  ssh vagrant@192.168.60.5
+   53  ssh vagrant@192.168.60.6
+   54  ansible -b -m yum -a "name=ntp state=present" multi
+   55  history
+   56  ssh-copy-id vagrant@192.168.60.4
+   57  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.5"
+   58  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.6"
+   59  ssh-copy-id vagrant@192.168.60.4
+   60  ssh vagrant@192.168.60.4
+   61  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.4"
+   62  ssh-copy-id vagrant@192.168.60.4
+   63  ssh-copy-id vagrant@192.168.60.5
+   64  ssh-copy-id vagrant@192.168.60.6
+   65  ansible -b -m shell -a "cat /etc/environment" multi
+   66  history

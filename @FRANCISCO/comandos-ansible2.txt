@@ -1,0 +1,333 @@
+vagrant@mestre-ansible:~/Documents/Ansible-for-DevOps/nodejs$ history
+    1  sudo vim /etc/environment
+    2  vim /etc/environment
+    3  sudo vim /etc/environment
+    4  sudo vim /etc/apt/apt.conf
+    5  sudo vim /etc/profile
+    6  echo "export http_proxy ftp_proxy" >> /etc/profile
+    7  sudo echo "export http_proxy ftp_proxy" >> /etc/profile
+    8  sudo vim /etc/profile
+    9  sudo apt-get update
+   10  sudo apt install ansible
+   11  vim /etc/ansible/hosts
+   12  sudo vim /etc/ansible/hosts
+   13  clear
+   14  ansible multi -a "hostname"
+   15  ssh-keygen -t rsa -b 4096
+   16  ssh-copy-id vagrant@192.168.60.4
+   17  ssh-copy-id vagrant@192.168.60.5
+   18  ssh-copy-id vagrant@192.168.60.6
+   19  ansible multi -a "hostname"
+   20  sudo vim /etc/ansible/ansible.cfg
+   21  ansible multi -a "hostname"
+   22  ansible multi -a "free -m"
+   23  ansible multi -a "free -m" -f 1
+   24  ansible -a "free -m" -f 1 multi
+   25  ansible -a "df -h" -f 1 multi
+   26  ansible -a "date" -f 1 multi
+   27  ansible -m setup multi
+   28  clear
+   29  ansible -s -m yum - "name=ntp state=present" multi
+   30  ansible -s -m yum -a "name=ntp state=present" multi
+   31  ansible -m yum -a "name=ntp state=present" multi
+   32  ansible --help
+   33  ansible -b -m yum -a "name=ntp state=present" multi
+   34  claar
+   35  clear
+   36  ssh vagrant@192.168.60.4
+   37  ansible -b -a "echo 'proxy=http://172.28.8.54:3128' >> /etc/yum.conf" multi
+   38  ssh vagrant@192.168.60.4
+   39  ssh vagrant@192.168.60.5
+   40  ansible -b -a "echo proxy=http://172.28.8.54:3128 >> /etc/yum.conf" multi
+   41  ssh vagrant@192.168.60.5
+   42  ansible -b -m shell -a "echo 'proxy=http://172.28.8.54:3128' >> /etc/yum.conf" multi
+   43  ansible -b -m shell -a "cat /etc/yum.conf' >> /etc/yum.conf" multi
+   44  ansible -b -m shell -a "cat /etc/yum.conf" multi
+   45  ssh vagrant@192.168.60.5
+   46  ansible -b -m shell -a "cat /etc/environment" multi
+   47  ssh vagrant@192.168.60.4
+   48  ansible -b -m shell -a "cat /etc/environment" multi
+   49  ansible -b -m shell -a "echo 'http_proxy=http://172.28.8.54:3128\nhttps_proxy=http://172.28.8.54:3128' >> /etc/environment" multi
+   50  ansible -b -m shell -a "cat /etc/environment" multi
+   51  ssh vagrant@192.168.60.4
+   52  ssh vagrant@192.168.60.5
+   53  ssh vagrant@192.168.60.6
+   54  ansible -b -m yum -a "name=ntp state=present" multi
+   55  history
+   56  ssh-copy-id vagrant@192.168.60.4
+   57  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.5"
+   58  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.6"
+   59  ssh-copy-id vagrant@192.168.60.4
+   60  ssh vagrant@192.168.60.4
+   61  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.4"
+   62  ssh-copy-id vagrant@192.168.60.4
+   63  ssh-copy-id vagrant@192.168.60.5
+   64  ssh-copy-id vagrant@192.168.60.6
+   65  ansible -b -m shell -a "cat /etc/environment" multi
+   66  history
+   67  ansible -b -m shell -a "cat /etc/environment" multi
+   68  ansible -b -m shell -a "date" multi
+   69  exit
+   70  pwd
+   71  mkdir Documents
+   72  cd Documents/
+   73  mkdir Ansible-for-DevOps
+   74  cd Ansible-for-DevOps/
+   75  cat /etc/ansible/hosts
+   76  exit
+   77  ansible -a "hostname" multi
+   78  ansible -a "df -h" multi
+   79  ansible multi -m setup
+   80  ansible -s -m yum -a "name=ntp state=present"
+   81  ansible -s -m yum -a "name=ntp state=present" multi
+   82  ansible -m yum -a "name=ntp state=present" multi
+   83  ansible -b -m yum -a "name=ntp state=present" multi
+   84  ansible -b -m service -a "name=ntpd state=started enabled=yes"
+   85  ansible -b -m service -a "name=ntpd state=started enabled=yes" multi
+   86  ansible -b -m shell -a "service ntpd stop"
+   87  ansible -b -m shell -a "service ntpd stop" multi
+   88  ansible -b -m shell -a "ntpdate -q 0.rhel.pool.nto.org" multi
+   89  ansible -b -m shell -a "propaedc01.reders" multi
+   90  ansible -b -m shell -a "ntpdate -q propaedc01.reders" multi
+   91  ansible -b -m service -a "name=ntpd state=started"
+   92  ansible -b -m service -a "name=ntpd state=started" multi
+   93  ansible -b -m service -a "name=ntpd state=stopped enabled=no" multi
+   94  ansible -b -m service -a "name=chrony state=started enabled=yes" multi
+   95  ansible -b -m service -a "name=chronyd state=started enabled=yes" multi
+   96  ansible -b -m shell -a "date"
+   97  ansible -b -m shell -a "date" multi
+   98  ansible -b -m shell -a "chronyc tracking" multi
+   99  ansible -b -m yum -a "name=python3-pip state=present"
+  100  ansible -b -m yum -a "name=python3-pip state=present" app
+  101  ansible -b -m pip -a "name=django<4 state=present" app
+  102  ansible -b -m pip3 -a "name=django<4 state=present" app
+  103  ansible -b -m pip -a "name=django<4 state=present" app
+  104  whereis pip
+  105  ansible -b -m pip --executable /usr/bin/pip3 -a "name=django<4 state=present" app
+  106  ansible -b -m pip -a "name=django<4 state=present executable=$(which pip3)" app
+  107  ansible app -b -m pip -a "name=django<4 state=present executable=$(which pip3)"
+  108  ansible app -b -m pip -a "name=django<4 state=present executable=/usr/bin/pip3"
+  109  ansible -b -m yum -a "name=mariadb-server state=present" db
+  110  ansible -b -m service -a "name=mariadb-server state=started enabled=yes" db
+  111  ansible -b -m service -a "name=mariadb state=started enabled=yes" db
+  112  ansible -b -m yum -a "firewalld" db
+  113  ansible -b -m yum -a "name=firewalld state=present" db
+  114  ansible -b -m service -a "name=firewalld state=started enabled=yes" db
+  115  ansible -b -m firewalld -a "zone=database state=present permanent=yes" db
+  116  ansible -b -m firewalld -a "source=192.168.60.0/24 zone=database state=enabled permanent=yes" db
+  117  ansible -b -m firewalld -a "port=3306/tcp zone=database state=enabled permanent=yes" db
+  118  telnet 192.168.60.6 3306
+  119  vim /etc/ansible/hosts
+  120  ping 192.168.60.6
+  121  telnet 192.168.60.6 3306
+  122  ansible -b -m yum -a "name=telnet state=present" multi
+  123  ansible -b -m firewalld -a "source=192.168.60.0/24 zone=database state=enabled permanent=yes" db
+  124  ansible -b -m yum -a "name=python3-PyMySQL state=present" db
+  125  ansible -b -m shell -a "cd /tmp && wget --no-check-certificate https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm" multi
+  126  ansible -b -m shell -a "cd /tmp && wget --no-check-certificate https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm && rpm -Uvh epel-release-7-14.noarch.rpm" multi
+  127  ansible -b -m yum -a "name=python3-PyMySQL state=present" db
+  128  ansible -b -m pip -a "name=PyMySQL state=present executable=/usr/bin/pip3" db
+  129  history | grep pip3
+  130  history | grep pip
+  131  ansible -b -m yum -a "name=python3-pip state=present" multi
+  132  ansible -b -m pip -a "name=PyMySQL state=present executable=/usr/bin/pip3" db
+  133  ansible -b -m mysql_user -a "name=django host=% password=12345" db
+  134  ansible -b -m pip -a "name=PyMySQL state=present executable=/usr/bin/pip3" db
+  135  ansible -b -m mysql_user -a "name=django host=% password=12345" db
+  136  su vi /etc/ansible/hosts
+  137  sudo vi /etc/ansible/hosts
+  138  ansible -b -m mysql_user -a "name=django host=% password=12345" db
+  139  sudo vi /etc/ansible/hosts
+  140  ansible -b -m yum -a "name=vim-enhaced state=present" mestre
+  141  ip address
+  142  history | grep ssh
+  143  ssh-copy-id vagrant@192.168.60.10
+  144  sudo ssh-copy-id vagrant@192.168.60.10
+  145  ssh-copy-id vagrant@192.168.60.10
+  146  clear
+  147  ansible -b -m mysql_user -a "name=django host=% password=12345 priv=*.*:ALL state=present" db
+  148  telnet 192.168.60.6 3306
+  149  ping 192.168.60.6
+  150  tracepath 192.168.60.6
+  151  which iptables
+  152  service iptables stop
+  153  sudo service iptables stop
+  154  sudo iptables -F
+  155  telnet 192.168.60.6 3306
+  156  ansible -b -a "systemctl status chronyd" app
+  157  ansible -b -m shell -a "systemctl status chronyd" app
+  158  ansible -b -m shell -a "systemctl status restart" app --limit "192.168.60.4"
+  159  ansible -b -m shell -a "systemctl chronyd restart" app --limit "192.168.60.4"
+  160  ansible -b -m shell -a "systemctl restart chronyd" app --limit "192.168.60.4"
+  161  ansible -b -m shell -a "systemctl restart chronyd" app --limit "*.4"
+  162  ansible -b -m group -a "name=admin state=present"
+  163  ansible -b -m group -a "name=admin state=present" app
+  164  ansible -b -m group -a "name=admin state=absent" app
+  165  ansible -b -m group -a "name=admin state=present" app
+  166  ansible -b -m user -a "name=johndoe group=admin createhome=yes" app
+  167  ansible -b -m user -a "name=johndoe group=admin createhome=yes generate_ssh_keys=yes" app
+  168  ansible -b -m user -a "name=johndoe group=admin createhome=yes generate_ssh_key=yes" app
+  169  ansible -b -m user -a "name=johndoe state=absent remove=yes" app
+  170  ansible -b -m package -a "name=git state=present" app
+  171  ansible -b -m stat -a "path=/etc/enviroment" app
+  172  ansible -m copy -a "src=/etc/hosts dest=/tmp/hosts" app
+  173  ansible -b -m yum -a "name=libselinux-python state=present" multi
+  174  ansible -b -m dnf -a "name=libselinux-python state=present" multi
+  175  sudo vim /etc/ansible/hosts
+  176  ansible -b -m package -a "name=git state=present" app
+  177  ansible -b -m package -a "name=git state=present" db
+  178  ansible -b -m package -a "name=git state=present" app
+  179  ansible -m copy -a "src=/etc/hosts dest=/tmp/hosts" app
+  180  clear
+  181  ansible -b -m fetch -a "src=/etc/hosts dest=/tmp"
+  182  ansible -b -m fetch -a "src=/etc/hosts dest=/tmp" multi
+  183  ls -la /tmp/
+  184  clear
+  185  ansible -m file -a "dest=/tmp/test mode=644 state=directory" multi
+  186  ansible -m file -a "dest=/tmp/test state=absent" multi
+  187  ansible -b -B 3600 -P 0 -a "yum -y update" multi
+  188  ansible -b -m aysnc_status -a "jid=932239974800.8634" multi
+  189  ansible -b -m async_status -a "jid=932239974800.8634" multi
+  190  ansible -b -a "tail /var/log/messages"
+  191  ansible -b -a "tail /var/log/messages" multi
+  192  ansible -b -m shell -a "tail /var/log/messages | wc -l" multi
+  193  ansible -b -m shell -a "tail /var/log/messages | grep ansible-async | wc -l" multi
+  194  clear
+  195  ansible -b -m cron -a "name='daily-cron-all-servers' hour=4 job='/path/to/daily-script.sh'" multi
+  196  ansible -b -m cron -a "name='daily-cron-all-servers' hour=2 job='/path/to/daily-script.sh'" multi
+  197  ansible -b -m cron -a "name='daily-cron-all-servers' hour=2 job='/path/to/daily-script.sh' user=vagrant" multi
+  198  ansible -b -m cron -a "name='daily-cron-all-servers' hour=2 job='/path/to/daily-script.sh' user=vagrant state=absent" multi
+  199  netstat -nat
+  200  ss -nat
+  201  history | grep ssh
+  202  cd Documents/Ansible-for-DevOps/
+  203  ls -la
+  204  ansible-playbook apache.yaml --check
+  205  ansible-playbook apache.yaml --check --limit 192.168.60.4
+  206  ansible-playbook apache.yaml --list-hosts
+  207  ansible-playbook apache.yaml -i inventory.ini --list-hosts
+  208  history | grep ssh
+  209  ls -la /tmp/
+  210  cp -Rf /tmp/nodejs/ .
+  211  exit
+  212  history
+  213  ls -la
+  214  cd Documents/
+  215  ls -la
+  216  cd Ansible-for-DevOps/
+  217  exit
+  218  history
+  219  vim /etc/ansible/hosts
+  220  sudo vim /etc/ansible/hosts
+  221  history | grep ssh
+  222  ssh-copy-id vagrant@192.168.60.55
+  223  ssh vagrant@192.168.60.55
+  224  ls -la
+  225  cd Documents/Ansible-for-DevOps/
+  226  ls -la
+  227  history
+  228  exit
+  229  cd Documents/Ansible-for-DevOps/
+  230  ls
+  231  vim conf-centos7.yaml
+  232  cat /etc/ansible/hosts
+  233  sudo vim /etc/ansible/hosts
+  234  ansible-playbook conf-centos7.yaml --check --limit 192.168.60.55
+  235  ansible-playbook conf-centos7.yaml --limit 192.168.60.55
+  236  clear
+  237  vim conf-centos7.yaml
+  238  ansible-playbook conf-centos7.yaml --check --limit 192.168.60.55
+  239  vim conf-centos7.yaml
+  240  ansible-playbook conf-centos7.yaml --check --limit 192.168.60.55
+  241  vim conf-centos7.yaml
+  242  ansible-playbook conf-centos7.yaml --check --limit 192.168.60.55
+  243  ansible-playbook conf-centos7.yaml --limit 192.168.60.55
+  244*
+  245  vim conf-centos7.yaml
+  246  ansible-playbook conf-centos7.yaml --check --limit 192.168.60.55
+  247  ansible-playbook conf-centos7.yaml --limit 192.168.60.55
+  248  vim conf-centos7.yaml
+  249  ansible-playbook conf-centos7.yaml --limit 192.168.60.55
+  250  ansible-playbook conf-centos7.yaml --become --limit 192.168.60.55
+  251  ansible-playbook conf-centos7.yaml --become --limit 192.168.60.55 -v
+  252  vim conf-centos7.yaml
+  253  ansible-playbook conf-centos7.yaml --become --limit 192.168.60.55 -v
+  254  ansible-playbook conf-centos7.yaml --become --become_user vagrant --limit 192.168.60.55 -v
+  255  vim conf-centos7.yaml
+  256  ansible-playbook conf-centos7.yaml --become --become-user=vagrant --limit 192.168.60.55 -v
+  257  ansible-playbook conf-centos7.yaml --become --become-user=vagrant --ask-become-pass --limit 192.168.60.55 -v
+  258  ls -la
+  259  cd nodejs/
+  260  ls -la
+  261  vim provisioning/playbook.yml
+  262  ssh-copy-id vagrant@192.168.60.55
+  263  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.55"
+  264  ssh-copy-id vagrant@192.168.60.55
+  265  ssh vagrant@192.168.60.55
+  266  ssh-copy-id vagrant@192.168.60.55
+  267  ssh-keygen -f "/home/vagrant/.ssh/known_hosts" -R "192.168.60.55"
+  268  ssh-copy-id vagrant@192.168.60.55
+  269  ssh vagrant@192.168.60.55
+  270  ansible-playbook provisioning/playbook.yml --extra-vars="node_apps_location=/usr/local/opt/node" --limit 192.168.60.55 -v
+
+
+
+# nodejs
+
+exit
+    2  vim /etc/environment
+    3  sudo vi /etc/environment
+    4  sudo vi /etc/yum.conf
+    5  sudo yum check-update
+    6  rm -Rf /etc/yum.repos.d/epel*
+    7  sudo rm -Rf /etc/yum.repos.d/epel*
+    8  sudo yum check-update
+    9  exit
+   10  ss -natp
+   11  sudo yum check-updates
+   12   wget https://rpms.remirepo.net/RPM-GPG-KEY-remi -e http_proxy=http://172.28.8.54:3128 -e https_proxy=http://172.28.8.54:3128 --no-check-certificate
+   13  rpm --checksig remi-release-7.rpm
+   14  ls -la
+   15  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+   16  rpm --import RPM-GPG-KEY-remi
+   17  sudo rpm --import RPM-GPG-KEY-remi
+   18  vim /etc/environment
+   19  sudo vi /etc/environment
+   20  ls -la
+   21  sudo vi /etc/environment
+   22  printenv
+   23  printenv | grep http
+   24   wget https://rpms.remirepo.net/enterprise/remi-release-7.rpm --no-check-certificate
+   25  rpm -Uvh remi-release-7.rpm
+   26  sudo rpm -Uvh remi-release-7.rpm
+   27  sudo yum install -y epel-release
+   28  yum --enablerepo=extras install epel-release
+   29  sudo yum --enablerepo=extras install epel-release
+   30  history
+   31  sudo yum -y install epel-release
+   32  sudo yum repolist
+   33  sudo yum install pkg1
+   34  sudo yum install epel-release
+   35  sudo yum install npm
+   36  sudo yum --enablerepo="epel" list available
+   37  ls -la /etc/yum.repos.d/
+   38  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm --no-check-certificate
+   39  sudo yum install epel-release-latest-7.noarch.rpm
+   40  sudo yum --enablerepo="epel" list available
+   41  sudo yum repolist
+   42  sudo yum check-updates
+   43  sudo yum --enablerepo=epel -y install npm
+   44  sudo yum check-update --verbose
+   45  yum clean all
+   46  sudo yum clean all
+   47  sudo yum --enablerepo=epel -y install npm
+   48  sudo yum -y upgrade
+   49  sudo yum check-update --verbose
+   50  sudo yum makecache
+   51  sudo yum update
+   52  sudo yum repolist
+   53  yum --disablerepo=epel -y update  ca-certificates
+   54  sudo yum --disablerepo=epel -y update  ca-certificates
+   55  sudo yum --enablerepo=epel -y update
+   56  sudo vi /etc/yum.repos.d/epel.repo
+   57  sudo yum --enablerepo=epel -y update
