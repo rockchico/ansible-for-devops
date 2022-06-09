@@ -42,6 +42,9 @@
       register: forever_list
       changed_when: false
 
+    - debug:
+      msg: forever_list
+
     - name: Start example Node.js app.
       command: "/usr/local/bin/forever start {{ node_apps_location }}/app/app.js"
       when: "forever_list.stdout.find(node_apps_location + '/app/app.js') == -1"

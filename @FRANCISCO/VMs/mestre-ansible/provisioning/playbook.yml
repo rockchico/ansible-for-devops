@@ -1,0 +1,12 @@
+---
+  - hosts: all
+    become: true
+
+    tasks:
+
+      - name: Update the apt cache
+        debug: 
+          msg: Opa
+
+
+        
