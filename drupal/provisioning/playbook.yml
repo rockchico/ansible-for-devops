@@ -5,9 +5,12 @@
   vars_files:
     - vars.yml
 
+  # Ansible lets you run tasks before or after the main tasks (defined in tasks:) or
+  # roles (defined in roles:—we’ll get to roles later) using pre_tasks and post_tasks,
+  # respectively.
   pre_tasks:
     - name: Update apt cache if needed.
-      apt: update_cache=yes cache_valid_time=3600
+      apt: update_cache=yes cache_valid_time=3600 # We use Ansible’s apt module and tell it to update the cache if it’s been more than 3600 seconds (1 hour) since the last update.
 
   handlers:
     - name: restart apache
@@ -104,14 +107,7 @@
         host: localhost
         state: present
 
-    # TODO: See https://github.com/geerlingguy/ansible-for-devops/issues/297
-    - name: Create a MySQL user for Drupal.
-      mysql_user:
-        name: "{{ domain }}"
-        password: "1234"
-        priv: "{{ domain }}.*:ALL"
-        host: localhost
-        state: present
+
 
     - name: Download Composer installer.
       get_url:
