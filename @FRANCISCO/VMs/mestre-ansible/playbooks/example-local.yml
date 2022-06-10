@@ -1,3 +1,5 @@
+# [vagrant@mestre-ansible vagrant]$ ansible-playbook playbooks/example-local.yml -c local
+
 ---
   - hosts: localhost
     gather_facts: no
