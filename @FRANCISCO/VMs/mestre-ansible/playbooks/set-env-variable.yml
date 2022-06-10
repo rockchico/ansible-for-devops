@@ -1,0 +1,53 @@
+---
+- hosts: all
+  #become: true
+
+
+  # é possivel definir as variáveis de proxy globalmente, assim é possível utilizar em várias tasks
+  vars:
+    proxy_vars: 
+      http_proxy: http://172.28.8.54:3128
+      https_proxy: http://172.28.8.54:3128
+
+
+  tasks:
+    
+    - name: Add an environment variable to the remote user's shell.
+      lineinfile:
+        dest: ~/.bash_profile
+        regexp: '^ENV_VAR='
+        line: "ENV_VAR=value"
+
+
+    - name: Get the value of the environment variable we just added.
+      shell: 'source ~/.bash_profile && echo $ENV_VAR'
+      register: foo
+
+
+    - name: Print the value of the environment variable.
+      debug:
+        msg: "The variable is {{ foo.stdout }}"
+
+
+    - name: Add a global environment variable.
+      lineinfile:
+        dest: /etc/environment
+        regexp: '^ENV_VAR='
+        line: "ENV_VAR=blablabla"
+      become: yes
+
+
+    - name: Download a file, using example-proxy as a proxy.
+      get_url:
+        url: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+        dest: /tmp
+        validate_certs: false
+      environment: "{{ proxy_vars }}" # utilizando as variáveis de proxy definidas globalmente
+        
+
+
+
+      
+
+
+
