@@ -1,5 +1,5 @@
 ---
-  - hosts: localhost
+  - hosts: all
     connection: local
     gather_facts: no
 
@@ -15,5 +15,5 @@
       
         register: echo_result
 
-    - name: Show the result.
-      debug: var=echo_result.stdout
+      - name: Show the result.
+        debug: var=echo_result.stdout
