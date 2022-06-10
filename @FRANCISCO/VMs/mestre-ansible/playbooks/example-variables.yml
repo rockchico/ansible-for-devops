@@ -1,0 +1,33 @@
+---
+  - hosts: all
+
+    vars:
+      foo: bar
+
+    vars_files:
+      - vars/other_vars.yml
+
+
+    tasks:
+
+      - name: Prints Variable foo
+        debug:
+          msg: "Variable 'foo'  is set to {{ foo }} | Testevar = {{ testevar }} "
+
+      - name: Prints Group Variable
+        debug:
+          msg: "my_group_var = {{ my_group_var }} - my_host_var = {{ my_host_var }}"
+
+
+      - name: Prints Magic hostvars
+        debug:
+          var: hostvars['192.168.60.4']
+
+      - name: Prints play hosts
+        debug:
+          var: play_hosts # All hosts on which the current play will be run.
+
+      
+
+
+

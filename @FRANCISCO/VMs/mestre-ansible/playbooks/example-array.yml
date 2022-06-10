@@ -1,0 +1,22 @@
+---
+  - hosts: all
+
+    vars:
+      foo: bar
+
+    vars_files:
+      - vars/other_vars.yml
+
+
+    tasks:
+
+      - name: Debug env
+        debug:
+          #var: ansible_env # ansible_env é uma variável disponível através da coleta de fatos
+          #var: ansible_env.PATH # ansible_env é uma variável disponível através da coleta de fatos
+          #var: ansible_python.version.major
+          #var: ansible_python.version
+          var: ansible_python['version']['major']
+
+
+
