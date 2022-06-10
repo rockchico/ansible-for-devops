@@ -8,6 +8,12 @@
     proxy_vars: 
       http_proxy: http://172.28.8.54:3128
       https_proxy: http://172.28.8.54:3128
+      ftp_proxy: http://172.28.8.54:3128
+
+    proxy_state: present
+    http_proxy: http://172.28.8.54:3128
+    https_proxy: http://172.28.8.54:3128
+    ftp_proxy: http://172.28.8.54:3128
 
 
   tasks:
@@ -37,13 +43,30 @@
       become: yes
 
 
-    - name: Download a file, using example-proxy as a proxy.
-      get_url:
-        url: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-        dest: /tmp
-        validate_certs: false
-      environment: "{{ proxy_vars }}" # utilizando as variáveis de proxy definidas globalmente
-        
+    # - name: Download a file, using example-proxy as a proxy.
+    #   get_url:
+    #     url: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+    #     dest: /tmp
+    #     validate_certs: false
+    #   environment: "{{ proxy_vars }}" # utilizando as variáveis de proxy definidas globalmente
+
+
+
+    # In the 'tasks' section of the playbook:
+    - name: Configure the proxy.
+      become: true
+      lineinfile:
+        dest: /etc/environment
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: "{{ proxy_state }}"
+      with_items:
+        - regexp: "^http_proxy="
+          line: "http_proxy={{http_proxy}}"
+        - regexp: "^https_proxy="
+          line: "https_proxy={{https_proxy}}"
+        - regexp: "^ftp_proxy="
+          line: "ftp_proxy={{ftp_proxy}}"
 
 
 
