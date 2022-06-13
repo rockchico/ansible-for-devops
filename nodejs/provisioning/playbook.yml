@@ -2,10 +2,21 @@
 - hosts: all
   become: yes
 
+
   vars:
     node_apps_location: /usr/local/opt/node
+    node_npm_modules:
+      - forever
+      - async
+      - request
 
-  tasks:
+      
+  roles:
+    - nodejs
+
+
+
+  pre_tasks:
     - name: Install EPEL repo.
       yum: name=epel-release state=present
 
@@ -22,12 +33,10 @@
     - name: Ensure firewalld is stopped (since this is a test server).
       service: name=firewalld state=stopped
 
-    - name: Install Node.js and npm.
-      yum: name=npm state=present enablerepo=epel
 
-    - name: Install Forever (to run our Node.js app).
-      npm: name=forever global=yes state=present
 
+  tasks:
+    # Nodejs app deplyment tasks
     - name: Ensure Node.js app folder exists.
       file: "path={{ node_apps_location }} state=directory"
 
@@ -43,7 +52,7 @@
       changed_when: false
 
     - debug:
-      msg: forever_list
+        msg: forever_list
 
     - name: Start example Node.js app.
       command: "/usr/local/bin/forever start {{ node_apps_location }}/app/app.js"
