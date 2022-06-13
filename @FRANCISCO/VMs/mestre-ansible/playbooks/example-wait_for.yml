@@ -1,0 +1,17 @@
+---
+  - hosts: all
+
+    tasks:
+
+      - name: Wait for web server to start.
+        local_action:
+          module: wait_for
+          host: 192.168.60.4
+          port: 80
+          delay: 10
+          timeout: 300
+          state: started
+      
+      - name: Exemplo Wait for
+        debug: 
+          msg: Agora foi!
