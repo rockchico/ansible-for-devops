@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   # Base VM OS configuration.
   config.vm.box = "geerlingguy/centos7"
   config.ssh.insert_key = false
-  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.synced_folder '.', '/vagrant', disabled: false
 
   # General VirtualBox VM configuration.
   config.vm.provider :virtualbox do |v|
@@ -66,14 +66,46 @@ Vagrant.configure("2") do |config|
     memcached.vm.network :private_network, ip: "192.168.2.7"
 
     # Run Ansible provisioner once for all VMs at the end.
-    memcached.vm.provision "ansible" do |ansible|
-      ansible.playbook = "configure.yml"
+    # memcached.vm.provision "ansible" do |ansible|
+    #   ansible.playbook = "configure.yml"
+    #   ansible.inventory_path = "inventories/vagrant/inventory"
+    #   ansible.limit = "all"
+    #   ansible.extra_vars = {
+    #     ansible_user: 'vagrant',
+    #     ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+    #   }
+    # end
+
+    # Exemplo de provisionamento com instalação de Roles
+    memcached.vm.provision 'preemptively give others write access to /etc/ansible/roles', type: :shell, inline: <<~'EOM'
+      sudo mkdir /etc/ansible/roles -p
+      sudo chmod o+w /etc/ansible/roles
+    EOM
+
+    memcached.vm.provision 'ansible', run: 'always', type: :ansible_local do |ansible|
+      
+      
+      
+      
+      ansible.galaxy_role_file = 'requirements.yml'
+      ansible.galaxy_roles_path = '/etc/ansible/roles'
+      ansible.galaxy_command = 'ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}'
+      
+      ansible.playbook = 'configure.yml'
       ansible.inventory_path = "inventories/vagrant/inventory"
       ansible.limit = "all"
       ansible.extra_vars = {
         ansible_user: 'vagrant',
-        ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+        #ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
       }
+
+      
+      
     end
+
+
+
+
+
   end
 end
