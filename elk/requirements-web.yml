@@ -1,0 +1,5 @@
+---
+roles:
+- name: geerlingguy.nginx
+- name: geerlingguy.filebeat
+  version: 3.0.1

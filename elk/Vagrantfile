@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "geerlingguy/ubuntu2004"
-  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.synced_folder '.', '/vagrant', disabled: false
   config.ssh.insert_key = false
 
   config.vm.provider :virtualbox do |v|
@@ -20,11 +20,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     logs.vm.hostname = "logs.test"
     logs.vm.network :private_network, ip: "192.168.9.90"
 
-    logs.vm.provision :ansible do |ansible|
+
+    # Exemplo de provisionamento com instalação de Roles
+    logs.vm.provision 'preemptively give others write access to /etc/ansible/roles', type: :shell, inline: <<~'EOM'
+      sudo mkdir /etc/ansible/roles -p
+      sudo chmod o+w /etc/ansible/roles
+    EOM
+
+    logs.vm.provision 'ansible', run: 'always', type: :ansible_local do |ansible|
+
+      ansible.galaxy_role_file = 'requirements-elk.yml'
+      ansible.galaxy_roles_path = '/etc/ansible/roles'
+      ansible.galaxy_command = 'ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}'
+      
       ansible.playbook = "provisioning/elk/main.yml"
-      ansible.inventory_path = "provisioning/elk/inventory"
+      #ansible.inventory_path = "provisioning/elk/inventory"
       ansible.become = true
+
     end
+
+
   end
 
   # Web server.
@@ -37,11 +52,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.cpus = 1
     end
 
-    web.vm.provision :ansible do |ansible|
+    # Exemplo de provisionamento com instalação de Roles
+    web.vm.provision 'preemptively give others write access to /etc/ansible/roles', type: :shell, inline: <<~'EOM'
+      sudo mkdir /etc/ansible/roles -p
+      sudo chmod o+w /etc/ansible/roles
+    EOM
+
+    web.vm.provision 'ansible', run: 'always', type: :ansible_local do |ansible|
+
+      ansible.galaxy_role_file = 'requirements-web.yml'
+      ansible.galaxy_roles_path = '/etc/ansible/roles'
+      ansible.galaxy_command = 'ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}'
+      
       ansible.playbook = "provisioning/web/main.yml"
-      ansible.inventory_path = "provisioning/web/inventory"
+      #ansible.inventory_path = "provisioning/web/inventory"
       ansible.become = true
+
     end
+
+
   end
 
 end
