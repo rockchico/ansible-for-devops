@@ -1,4 +1,5 @@
 ---
+#- hosts: localhost # $ ansible-playbook playbooks/provision.yml -c local
 - hosts: all
   become: yes
 
@@ -15,6 +16,7 @@
     - name: Install app dependencies.
       apt:
         name:
+          - acl # https://github.com/ansible/ansible/issues/74830
           - libsqlite3-dev
           - libreadline-dev
           - tzdata
