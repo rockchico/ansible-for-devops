@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "geerlingguy/ubuntu2004"
-  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.synced_folder '.', '/vagrant', disabled: false
   config.ssh.insert_key = false
 
   config.vm.provider "virtualbox" do |v|
@@ -15,7 +15,20 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = "rails-demo"
   config.vm.network :private_network, ip: "192.168.33.7"
 
-  config.vm.provision "ansible" do |ansible|
+  # Exemplo de provisionamento com instalação de Roles
+  config.vm.provision 'preemptively give others write access to /etc/ansible/roles', type: :shell, inline: <<~'EOM'
+    sudo mkdir /etc/ansible/roles -p
+    sudo chmod o+w /etc/ansible/roles
+  EOM
+
+  config.vm.provision "ansible_local" do |ansible|
+    
+    # especifica os requirements e faz instalação das roles
+    ansible.galaxy_role_file = 'requirements.yml'
+    ansible.galaxy_roles_path = '/etc/ansible/roles'
+    ansible.galaxy_command = 'ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}'
+
+    
     ansible.playbook = "playbooks/main.yml"
     ansible.become = true
   end
